@@ -1,0 +1,5 @@
+// Placeholder for Auth DTOs
+export class LoginDto {
+    phoneNumber: string;
+    pin: string;
+}
