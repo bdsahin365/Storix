@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
 
 export enum AuditActionType {
+    STORE_CREATED = 'STORE_CREATED',
     SUPPORT = 'SUPPORT',
     MIGRATION = 'MIGRATION',
     SECURITY = 'SECURITY',

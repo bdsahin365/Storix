@@ -10,6 +10,8 @@ async function bootstrap() {
     transform: true,
     forbidNonWhitelisted: true,
   }));
-  await app.listen(3000);
+  const port = process.env.PORT || 3001;
+  await app.listen(port);
+  console.log(`🚀 Backend running on http://localhost:${port}`);
 }
 bootstrap();

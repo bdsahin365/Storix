@@ -15,6 +15,9 @@ export class Shop {
     @Column({ nullable: true })
     phone: string;
 
+    @Column({ nullable: true })
+    store_type: string; // মুদি দোকান, ফার্মেসি, হার্ডওয়্যার, পাইকারি, অন্যান্য
+
     @Column({ type: 'jsonb', default: {} })
     settings: Record<string, any>; // Currency, Language, PrintHeader, etc.
 
