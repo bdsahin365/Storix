@@ -6,11 +6,12 @@
             "use": "@vercel/next"
         },
         {
-            "src": "apps/backend/package.json",
+            "src": "apps/backend/src/serverless.ts",
             "use": "@vercel/node",
             "config": {
                 "includeFiles": [
-                    "apps/backend/dist/**"
+                    "apps/backend/dist/**",
+                    "apps/backend/src/**"
                 ]
             }
         }
@@ -18,14 +19,11 @@
     "routes": [
         {
             "src": "/api/(.*)",
-            "dest": "apps/backend/dist/main.js"
+            "dest": "/apps/backend/src/serverless.ts"
         },
         {
             "src": "/(.*)",
-            "dest": "apps/web/$1"
+            "dest": "/apps/web/$1"
         }
-    ],
-    "env": {
-        "NEXT_PUBLIC_API_URL": "/api"
-    }
+    ]
 }
