@@ -4,7 +4,25 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors(); // Essential for Web/Mobile access
+
+  // Add request logging middleware
+  app.use((req: any, res: any, next: any) => {
+    console.log(`📥 ${req.method} ${req.url}`);
+    if (req.headers.authorization) {
+      const token = req.headers.authorization.substring(0, 50);
+      console.log(`   Auth: ${token}...`);
+    } else {
+      console.log(`   Auth: ❌ No Authorization header`);
+    }
+    next();
+  });
+
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    allowedHeaders: 'Content-Type, Accept, Authorization',
+  });
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     transform: true,

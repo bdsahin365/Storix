@@ -43,5 +43,5 @@
 - [ ] Implement Closing Logic
 
 ## Module 6: Web App & Mobile App
-- [ ] Setup Frontend Projects
+- [/] Setup Frontend Projects
 - [ ] Integrate with Backend

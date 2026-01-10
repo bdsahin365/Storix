@@ -11,6 +11,7 @@ import {
     BarChart3,
     BookOpen,
     BadgeCheck,
+    Settings,
 } from "lucide-react";
 import {
     Sidebar,
@@ -29,14 +30,15 @@ import Image from "next/image";
 
 const menuItems = [
     { title: "ড্যাশবোর্ড", url: "/dashboard", icon: LayoutDashboard },
-    { title: "কাস্টমার", url: "/dashboard/customers", icon: Users },
-    { title: "বিক্রি", url: "/dashboard/sales", icon: ShoppingCart },
-    { title: "পেমেন্ট", url: "/dashboard/payments", icon: CreditCard },
-    { title: "প্রোডাক্ট", url: "/dashboard/products", icon: Package },
-    { title: "স্টক যোগ", url: "/dashboard/stock", icon: Warehouse },
-    { title: "ইনভেন্টরি", url: "/dashboard/inventory", icon: BookOpen },
-    { title: "হালখাতা", url: "/dashboard/halkhata", icon: FileText },
-    { title: "রিপোর্ট", url: "/dashboard/reports", icon: BarChart3 },
+    { title: "কাস্টমার", url: "/customers", icon: Users },
+    { title: "বিক্রি", url: "/sales", icon: ShoppingCart },
+    { title: "পেমেন্ট", url: "/payments", icon: CreditCard },
+    { title: "প্রোডাক্ট", url: "/products", icon: Package },
+    { title: "স্টক যোগ", url: "/stock", icon: Warehouse },
+    { title: "ইনভেন্টরি", url: "/inventory", icon: BookOpen },
+    { title: "হালখাতা", url: "/halkhata", icon: FileText },
+    { title: "রিপোর্ট", url: "/reports", icon: BarChart3 },
+    { title: "সেটিংস", url: "/settings", icon: Settings },
 ];
 
 import { useEffect, useState } from "react";

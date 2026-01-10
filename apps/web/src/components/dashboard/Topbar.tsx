@@ -144,7 +144,7 @@ export function Topbar() {
 
                 {/* User Menu */}
                 <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                    <DropdownMenuTrigger asChild id="user-menu-trigger">
                         <Button variant="ghost" className="gap-2">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-100 text-brand-700 font-semibold uppercase">
                                 {loading ? '...' : userData.shortName || 'U'}

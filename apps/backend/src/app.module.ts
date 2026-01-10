@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
@@ -42,4 +42,14 @@ import { SalesModule } from './sales/sales.module';
     SalesModule,
   ],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply((req: any, res: any, next: () => void) => {
+        console.log(`[Request] ${req.method} ${req.url}`);
+        console.log('Headers:', JSON.stringify(req.headers));
+        next();
+      })
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

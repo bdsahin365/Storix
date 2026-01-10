@@ -1,37 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index } from 'typeorm';
-
-export enum AuditActionType {
-    STORE_CREATED = 'STORE_CREATED',
-    SUPPORT = 'SUPPORT',
-    MIGRATION = 'MIGRATION',
-    SECURITY = 'SECURITY',
-    OTHER = 'OTHER',
-}
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
 
 @Entity('audit_logs')
 export class AuditLog {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column()
-    @Index()
-    action_by: string; // User UUID or 'SUPERADMIN'
+    @Column({ type: 'uuid', nullable: true })
+    shop_id: string;
 
-    @Column({
-        type: 'enum',
-        enum: AuditActionType,
-    })
-    action_type: AuditActionType;
-
-    @Column({ type: 'text' })
-    reason: string;
-
-    @Column({ type: 'jsonb', nullable: true })
-    details: Record<string, any>; // Previous state, New state, etc.
+    @Column({ type: 'uuid', nullable: true })
+    user_id: string;
 
     @Column({ nullable: true })
-    target_resource: string; // e.g., 'shop:UUID' or 'transaction:UUID'
+    action: string;
+
+    @Column({ type: 'text', nullable: true })
+    entity: string;
+
+    @Column({ type: 'jsonb', nullable: true })
+    old_value: any;
+
+    @Column({ type: 'jsonb', nullable: true })
+    new_value: any;
 
     @CreateDateColumn()
     created_at: Date;
 }
+

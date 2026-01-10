@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { User } from '../users/users.entity';
+import { ShopPreference } from './entities/shop-preferences.entity';
 
 @Entity('shops')
 export class Shop {
@@ -9,20 +10,20 @@ export class Shop {
     @Column()
     name: string;
 
-    @Column({ nullable: true })
-    address: string;
+    @Column()
+    store_type: string;
 
-    @Column({ nullable: true })
-    phone: string;
+    @Column({ type: 'text', nullable: true })
+    address: string | null;
 
-    @Column({ nullable: true })
-    store_type: string; // মুদি দোকান, ফার্মেসি, হার্ডওয়্যার, পাইকারি, অন্যান্য
-
-    @Column({ type: 'jsonb', default: {} })
-    settings: Record<string, any>; // Currency, Language, PrintHeader, etc.
+    @Column({ type: 'text', nullable: true })
+    store_photo_path: string | null;
 
     @OneToMany(() => User, (user) => user.shop)
     users: User[];
+
+    @OneToOne(() => ShopPreference, (pref) => pref.shop)
+    preference: ShopPreference;
 
     @CreateDateColumn()
     created_at: Date;
@@ -30,3 +31,4 @@ export class Shop {
     @UpdateDateColumn()
     updated_at: Date;
 }
+
